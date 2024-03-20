@@ -82,26 +82,27 @@
                             <input type="text" class="form-control"  id="inputField" name="nomor_bpjs" style="width: 100%; font-size: 30px;"  autocomplete="off">
                         </div>
 
-                        <div class="mb-5" id="keyboard" style="display: none;">
-                            <button onclick="addCharacter('1')">1</button>
-                            <button onclick="addCharacter('2')">2</button>
-                            <button onclick="addCharacter('3')">3</button>
-                            <button onclick="addCharacter('4')">4</button>
-                            <button onclick="addCharacter('5')">5</button>
-                            <button onclick="addCharacter('6')">6</button>
-                            <button onclick="addCharacter('7')">7</button>
-                            <button onclick="addCharacter('8')">8</button>
-                            <button onclick="addCharacter('9')">9</button>
-                            <button onclick="addCharacter('0')">0</button>
-                            <button onclick="deleteCharacter()">Hapus</button>
 
-                        </div>
                         <div class="text-center"> <!-- Center the button -->
                             <div class="d-grid gap-2">
                                 <button class="btn btn-primary" style="width: 100%; font-size: 30px;" type="submit">CARI</button>
                             </div>
                         </div>
                     </form>
+                    <div class="mt-3" id="keyboard" style="display: none;">
+                        <button onclick="addCharacter('1')">1</button>
+                        <button onclick="addCharacter('2')">2</button>
+                        <button onclick="addCharacter('3')">3</button>
+                        <button onclick="addCharacter('4')">4</button>
+                        <button onclick="addCharacter('5')">5</button>
+                        <button onclick="addCharacter('6')">6</button>
+                        <button onclick="addCharacter('7')">7</button>
+                        <button onclick="addCharacter('8')">8</button>
+                        <button onclick="addCharacter('9')">9</button>
+                        <button onclick="addCharacter('0')">0</button>
+                        <button onclick="deleteCharacter()">Hapus</button>
+
+                    </div>
                 </div>
             </div>
         </div>

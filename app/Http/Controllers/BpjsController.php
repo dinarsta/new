@@ -76,6 +76,7 @@ class BpjsController extends Controller
         $bpjsEntry->save();
 
         return redirect()->back()->with('success', 'Simpan Data Berhasil!');
+
     }
 
 
@@ -92,7 +93,7 @@ class BpjsController extends Controller
         return view('print', compact('bpjsEntry'));
     }
 
-   
+
     public function cetak($id)
     {
         // Find the BPJS entry by ID
