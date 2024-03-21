@@ -96,10 +96,32 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <p>Anda akan menuju ke poliklinik <strong id="selectedPoliText"></strong> dan
-                                        berkonsultasi dengan dokter <strong id="selectedDokterText"></strong>.</p>
-                                    <p>Apakah Anda yakin ingin melanjutkan?</p>
+
+                                    <p><strong>No BPJS:</strong> {{ $bpjsEntry->no_bpjs }}</p>
+                                    <p><strong>NORM:</strong> {{ $bpjsEntry->norm }}</p>
+                                    <p><strong>NIK KTP:</strong> {{ $bpjsEntry->nik_ktp }}</p>
+                                    <p><strong>Nama:</strong> {{ $bpjsEntry->nama }}</p>
+                                    <p><strong>Jenis Kelamin:</strong> {{ $bpjsEntry->jenis_kelamin }}</p>
+                                    <p><strong>Tanggal Lahir:</strong> {{ $bpjsEntry->tgl_lahir }}</p>
+                                    <p><strong>Alamat:</strong> {{ $bpjsEntry->alamat }}</p>
+                                    <p><strong>Poli:</strong>
+                                        @if ($bpjsEntry->selected_poli_id)
+                                            {{ App\Models\Poly::find($bpjsEntry->selected_poli_id)->nama_poly }}
+                                        @else
+                                            Belum dipilih
+                                        @endif
+                                    </p>
+
+                                    <p><strong>Dokter:</strong>
+                                        @if ($bpjsEntry->selected_dokter_id)
+                                            {{ App\Models\Dokter::find($bpjsEntry->selected_dokter_id)->nama_dokter }}
+                                        @else
+                                            Belum dipilih
+                                        @endif
+                                    </p>
+
                                 </div>
+
                                 <div class="modal-footer">
 
                                     <a href="{{ route('cetak', ['id' => $bpjsEntry->id]) }}"
