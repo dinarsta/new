@@ -71,18 +71,17 @@
 
         <div class="cetak">
 
-            <a href="{{ route('print', ['id' => $bpjsEntry->id]) }}" class="mt-2 btn btn-primary custom-btn"
+            <a href="{{ route('print', ['id' => $umumEntries->id]) }}" class="mt-2 btn btn-primary custom-btn"
                 style="width: 50%; font-size: 30px; font-weight: bold;">Cetak Antrian</a>
             <br>
             <br>
             <br>
-            <a href="{{ route('label', ['id' => $bpjsEntry->id]) }}" class="mt-2 btn btn-warning custom-btn"
+            <a href="{{ route('label', ['id' => $umumEntries->id]) }}" class="mt-2 btn btn-warning custom-btn"
                 style="width: 50%; font-size: 30px; font-weight: bold;">Cetak Label</a>
             <br>
             <br>
             <br>
-            <a href="{{ route('sep', ['id' => $bpjsEntry->id]) }}" class="mt-2 btn btn-success custom-btn"
-                style="width: 50%; font-size: 30px; font-weight: bold;">Cetak SEP BPJS</a>
+
         </div>
         <br>
         <br>
@@ -90,7 +89,7 @@
         <br>
         <br>
         <br>
-        <a class="btn btn-danger" href="/" role="button"> halaman utama</a>
+        <a class="btn btn-danger" href="/" role="button">  halaman utama</a>
     </center>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>

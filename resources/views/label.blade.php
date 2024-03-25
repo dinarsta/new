@@ -1,54 +1,51 @@
+<!doctype html>
+<html lang="en">
 
-<!DOCTYPE html>
-<html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>CETAK ANTRIAN</title>
-	<link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-        <link href="css/styles.css" rel="stylesheet" />
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> 
-          <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
 </head>
-<style type="text/css" media="print" >
-
-    
-input{
-   border: none;
-}
-input:focus{
-    outline:none;
-}
-
-input[type='file'] {
-        opacity: 0;
+<style>
+    @media print {
+        .no-print {
+            display: none !important;
+        }
     }
 
-    .btn {
-        display: none;
+    h1 {
+        font-size: 100px;
+        text-align: center;
     }
-
-label{
-    font-size:10px;
-}
-
 </style>
+
 <body>
-		
+    <h1 class="card-text"><strong>NO RM: {{ $bpjsEntry->norm }}</h1></strong>
 
+    <h1 class="card-text"><strong> {{ $bpjsEntry->nama }}</h1></strong>
 
+    <h1 class="card-text"><strong> {{ $bpjsEntry->jenis_kelamin }}</h1></strong>
 
-<center><label>NO RM : {{ $bpjsEntry->norm }}</label></center>
-<center><label> {{ $bpjsEntry->nama }}</label></center>
-<center><label>{{ $bpjsEntry->jenis_kelamin }} </label></center>
-
-
-
-<a class="btn btn-danger" href="index.php" role="button">Kembali</a>
+    <div class="mx-auto pb-3">
+        <a href="{{ route('cetak', ['id' => $bpjsEntry->id]) }}" class="btn btn-primary btn-circle no-print">
+            <i class="fas fa-arrow-left"> kembali</i>
+        </a>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
+        </script>
 </body>
+
 </html>
-<script type="text/javascript">
-    window.print();
-</script>

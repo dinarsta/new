@@ -1,4 +1,5 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -52,87 +53,83 @@
                         </button>
                     </div>
                 @endif
-                <form action="{{ route('handle.selection', ['id' => $bpjsEntry->id]) }}" method="post"
-                    class="custom-form">
-                    @csrf
-                    <h1 class="text-center mb-4">Pilih Poli dan Dokter</h1>
+                @foreach ($umumEntries as $umumEntry)
+                    <form action="{{ route('handle.selectionumum', ['id' => $umumEntry->id]) }}" method="post"
+                        class="custom-form">
+                        @csrf
 
-                    <div class="mb-3">
-                        <label for="nama" class="form-label">Nama:</label>
-                        <input type="text" class="form-control" id="nama" name="nama" autocomplete="off"
-                            value="{{ $bpjsEntry->nama }}" readonly>
-                    </div>
+                        <h1 class="text-center mb-4">Pilih Poli dan Dokter</h1>
+                        @foreach ($umumEntries as $umumEntry)
+                            <div class="mb-3">
+                                <label for="nama" class="form-label">Nama:</label>
+                                <input type="text" class="form-control" id="nama" name="nama"
+                                    autocomplete="off" value="{{ $umumEntry->nama }}" readonly>
+                            </div>
+                        @endforeach
+                        <div class="mb-3">
+                            <label for="selected_poli_id" class="form-label">Pilih Poliklinik:</label>
+                            <select name="selected_poli_id" id="selected_poli_id" class="form-select">
+                                <option value="">Pilih Poly</option>
+                                @foreach ($polies as $poli)
+                                    <option value="{{ $poli->id }}">{{ $poli->nama_poly }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="selected_dokter_id" class="form-label">Pilih Dokter:</label>
+                            <select name="selected_dokter_id" id="selected_dokter_id" class="form-select">
+                                <!-- Placeholder option -->
+                                <option value="">Pilih Dokter</option>
+                            </select>
+                        </div>
+                        <button type="submit" name="submit" class="btn btn-primary custom-btn">Simpan Pilihan</button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">KONFIRMASI</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        @foreach ($umumEntries as $umumEntry)
+                                            <p>Anda akan menuju ke:</p>
+                                            poliklinik
+                                            <strong>
+                                                @if ($umumEntry->selected_poli_id)
+                                                    {{ App\Models\Poly::find($umumEntry->selected_poli_id)->nama_poly }}
+                                                @else
+                                                    Belum dipilih
+                                                @endif
+                                            </strong>
 
-
-                    <div class="mb-3">
-                        <label for="selected_poli_id" class="form-label">Pilih Poliklinik:</label>
-                        <select name="selected_poli_id" id="selected_poli_id" class="form-select">
-                            <option value="">Pilih Poly</option>
-                            @foreach ($polies as $poli)
-                                <option value="{{ $poli->id }}">{{ $poli->nama_poly }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="selected_dokter_id" class="form-label">Pilih Dokter:</label>
-                        <select name="selected_dokter_id" id="selected_dokter_id" class="form-select">
-                            <!-- Placeholder option -->
-                            <option value="">Pilih Dokter</option>
-                        </select>
-                    </div>
-
-                    <button type="submit" name="submit" class="btn btn-primary custom-btn">Simpan Pilihan</button>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">KONFIRMASI</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Anda akan menuju ke:</p>
-                                    poliklinik
-                                    <strong>
-                                        @if ($bpjsEntry->selected_poli_id)
-                                            {{ App\Models\Poly::find($bpjsEntry->selected_poli_id)->nama_poly }}
-                                        @else
-                                            Belum dipilih
-                                        @endif
-                                    </strong>
-
-                                    </p>
-                                    dan berkonsultasi dengan
-                                    Dokter
-                                    <p>
-                                        <strong>
-                                            @if ($bpjsEntry->selected_dokter_id)
-                                                {{ App\Models\Dokter::find($bpjsEntry->selected_dokter_id)->nama_dokter }}
-                                            @else
-                                                Belum dipilih
-                                            @endif
-                                        </strong>
-                                    <p>Apakah Anda yakin ingin melanjutkan?</p>
-                                    </p>
-
-                                </div>
-
-                                <div class="modal-footer">
-
-                                    <a href="{{ route('cetak', ['id' => $bpjsEntry->id]) }}"
-                                        class="mt-2 btn btn-danger custom-btn">Lanjut</a>
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
-
+                                            dan berkonsultasi dengan
+                                            Dokter
+                                            <strong>
+                                                @if ($umumEntry->selected_dokter_id)
+                                                    {{ App\Models\Dokter::find($umumEntry->selected_dokter_id)->nama_dokter }}
+                                                @else
+                                                    Belum dipilih
+                                                @endif
+                                            </strong>
+                                            <p>Apakah Anda yakin ingin melanjutkan?</p>
+                                        @endforeach
+                                    </div>
+                                    <div class="modal-footer">
+                                        @foreach ($umumEntries as $umumEntry)
+                                            <a href="{{ route('cetakumum', ['id' => $umumEntry->id]) }}"
+                                                class="btn btn-danger">Lanjut</a>
+                                        @endforeach
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                </form>
+                    </form>
+                @endforeach
             </div>
 
             <div class="col-md-6">
