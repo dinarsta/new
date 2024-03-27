@@ -119,7 +119,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
         // Handle form submission and display the modal
@@ -155,7 +154,6 @@
                                 $('#patientId').text(response.patientData.id);
                                 // Display additional details in the modal body
                                 $('#patientDetails').html(`
-                                    <p><strong>No BPJS:</strong> ${response.patientData.no_bpjs}</p>
                                     <p><strong>NORM:</strong> ${response.patientData.norm}</p>
                                     <p><strong>NIK KTP:</strong> ${response.patientData.nik_ktp}</p>
                                     <p><strong>Nama:</strong> ${response.patientData.nama}</p>
@@ -172,9 +170,8 @@
                             // If no data is found, hide loading modal and show an alert
                             Swal.fire({
                                 icon: 'info',
-                                title: 'Data tidak ditemukan.',
-                                showConfirmButton: false,
-                                timer: 1500 // Set the timer to automatically close the alert after 1.5 seconds
+                                title: 'Informasi',
+                                text: 'Data tidak ditemukan.'
                             });
                         }
                     },
@@ -191,6 +188,7 @@
             });
         });
     </script>
+
 
 
 
