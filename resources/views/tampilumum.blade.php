@@ -115,7 +115,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
         // Handle form submission and display the modal
         $(document).ready(function() {
@@ -127,7 +127,11 @@
 
                 // Validasi BPJS number
                 if (bpjsNumber.trim() === "") {
-                    alert("Mohon masukkan nomor rekam medis.");
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Mohon masukkan nomor rekam medis.'
+                    });
                     return; // Stop execution if BPJS number is empty
                 }
 
@@ -160,13 +164,21 @@
                             }, 1000); // Wait for 1 second
                         } else {
                             // If no data is found, hide loading modal and show an alert
-                            alert('Data tidak ditemukan.');
+                            Swal.fire({
+                                icon: 'info',
+                                title: 'Informasi',
+                                text: 'Data tidak ditemukan.'
+                            });
                         }
                     },
                     error: function() {
                         // If an error occurs, hide loading modal and show an alert
                         $('#loadingModal').modal('hide');
-                        alert('Error occurred while processing the request.');
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Error occurred while processing the request.'
+                        });
                     }
                 });
             });
@@ -175,8 +187,9 @@
 
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+        style="display: none; max-width: calc(100% - 1rem); margin: 1rem auto;">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">VERIFIKASI DATA <span hidden id="patientId"></span>
@@ -197,9 +210,9 @@
                 </div>
                 <div class="modal-footer">
                     @if (isset($data) && $data->count() > 0)
-                    <!-- Displaying only one "Simpan" button outside the loop -->
-                    <button type="button" class="btn btn-primary" onclick="redirectToSelectumum()">Simpan</button>
-                @endif
+                        <!-- Displaying only one "Simpan" button outside the loop -->
+                        <button type="button" class="btn btn-primary" onclick="redirectToSelectumum()">Simpan</button>
+                    @endif
 
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
@@ -207,28 +220,30 @@
         </div>
     </div>
 
- <!-- Loading Modal -->
-<div class="modal fade" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="loadingModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-body text-center">
-                <div class="spinner-border text-primary" role="status">
-                    <span class="sr-only">Loading...</span>
+
+
+    <!-- Loading Modal -->
+    <div class="modal fade" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="loadingModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <div class="spinner-border text-primary" role="status" style="width: 4rem; height: 4rem;">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <p class="mt-2">Loading...</p>
                 </div>
-                <p class="mt-2">Loading...</p>
             </div>
         </div>
     </div>
-</div>
-
 
     <script>
-      function redirectToSelectumum() {
-    // Get the ID from the span with id "patientId"
-    var id = document.getElementById('patientId').innerText;
-    // Redirect to the selectumum page with the patient ID
-    window.location.href = '{{ route('selectumum') }}' + '?id=' + id;
-}
+        function redirectToSelectumum() {
+            // Get the ID from the span with id "patientId"
+            var id = document.getElementById('patientId').innerText;
+            // Redirect to the selectumum page with the patient ID
+            window.location.href = '{{ route('selectumum') }}' + '?id=' + id;
+        }
 
         function addCharacter(char) {
             var inputField = document.getElementById('inputField');

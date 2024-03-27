@@ -120,6 +120,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
         // Handle form submission and display the modal
         $(document).ready(function() {
@@ -131,7 +132,11 @@
 
                 // Validasi BPJS number
                 if (bpjsNumber.trim() === "") {
-                    alert("Mohon masukkan nomor BPJS.");
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Mohon masukkan nomor BPJS.'
+                    });
                     return; // Stop execution if BPJS number is empty
                 }
 
@@ -165,18 +170,28 @@
                             }, 1000); // Wait for 1 second
                         } else {
                             // If no data is found, hide loading modal and show an alert
-                            alert('Data tidak ditemukan.');
+                            Swal.fire({
+                                icon: 'info',
+                                title: 'Data tidak ditemukan.',
+                                showConfirmButton: false,
+                                timer: 1500 // Set the timer to automatically close the alert after 1.5 seconds
+                            });
                         }
                     },
                     error: function() {
                         // If an error occurs, hide loading modal and show an alert
                         $('#loadingModal').modal('hide');
-                        alert('Error occurred while processing the request.');
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Error occurred while processing the request.'
+                        });
                     }
                 });
             });
         });
     </script>
+
 
 
     <!-- Modal -->
@@ -213,19 +228,20 @@
         </div>
     </div>
 
- <!-- Loading Modal -->
-<div class="modal fade" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="loadingModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-body text-center">
-                <div class="spinner-border text-primary" role="status">
-                    <span class="sr-only">Loading...</span>
+    <!-- Loading Modal -->
+    <div class="modal fade" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="loadingModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <div class="spinner-border text-primary" role="status" style="width: 4rem; height: 4rem;">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <p class="mt-2">Loading...</p>
                 </div>
-                <p class="mt-2">Loading...</p>
             </div>
         </div>
     </div>
-</div>
 
 
     <script>
