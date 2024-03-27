@@ -154,6 +154,7 @@
                                 $('#patientId').text(response.patientData.id);
                                 // Display additional details in the modal body
                                 $('#patientDetails').html(`
+                                    <p><strong>NO BPJS:</strong> ${response.patientData.no_bpjs}</p>
                                     <p><strong>NORM:</strong> ${response.patientData.norm}</p>
                                     <p><strong>NIK KTP:</strong> ${response.patientData.nik_ktp}</p>
                                     <p><strong>Nama:</strong> ${response.patientData.nama}</p>
@@ -161,6 +162,9 @@
                                     <p><strong>Tanggal Lahir:</strong> ${response.patientData.tgl_lahir}</p>
                                     <p><strong>Alamat:</strong> ${response.patientData.alamat}</p>
                                 `);
+
+
+
                                 // Show detail modal
                                 $('#exampleModal').modal('show');
                                 // Hide loading modal
