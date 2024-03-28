@@ -197,13 +197,13 @@
 
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+        style="display: none; max-width: calc(100% - 1rem); margin: 1rem auto;">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">VERIFIKASI DATA <span hidden id="patientId"></span>
                     </h5>
-
                 </div>
                 <div class="modal-body mt-3" id="patientDetails">
                     <!-- Display additional details here -->
